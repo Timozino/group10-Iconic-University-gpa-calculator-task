@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Course</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="icon" type="image/png" href="https://campus.iconicuniversity.edu.ng/images/logo-2.png">
+    <script>
+        function validateMaxTotal() {
+            let maxInputs = document.querySelectorAll('.max-score');
+            let total = 0;
+            maxInputs.forEach(input => total += parseFloat(input.value || 0));
+            const errorEl = document.getElementById('max-error');
+            if (Math.round(total) !== 100) {
+                errorEl.textContent = "Total max score must be 100. Currently: " + total;
+                return false;
+            } else {
+                errorEl.textContent = "";
+                return true;
+            }
+        }
+    </script>
+</head>
+<body>
+<!-- Header with Logo -->
+<div class="header">
+    <img src="https://campus.iconicuniversity.edu.ng/images/logo-2.png" alt="Iconic University Logo" class="logo">
+</div>
+
+<br>
+<div class="container">
+    <h2>Add Course</h2>
+    <form th:action="@{/course/save}" method="post" onsubmit="return validateMaxTotal()">
+        <label>Course Name</label>
+        <input type="text" name="name" required>
+
+        <label>Course Code</label>
+        <input type="text" name="code" required>
+
+        <label>Semester</label>
+        <select name="semester" required>
+            <option value="">-- Select Semester --</option>
+            <option value="First Semester">First Semester</option>
+            <option value="Second Semester">Second Semester</option>
+        </select>
+
+        <label>Credit Hours</label>
+        <input type="number" name="creditHours" min="1" required>
+
+        <h3>Grade Components</h3>
+        <div class="grid">
+            <div>
+                <label>Assignment Score</label>
+                <input type="number" name="assignmentScore" min="0" required>
+                <label>Assignment Max Score</label>
+                <input type="number" name="assignmentMax" class="max-score" min="1" required>
+            </div>
+            <div>
+                <label>Midterm Tests Score</label>
+                <input type="number" name="midtermScore" min="0" required>
+                <label>Midterm Max Score</label>
+                <input type="number" name="midtermMax" class="max-score" min="1" required>
+            </div>
+            <div>
+                <label>Exam Score</label>
+                <input type="number" name="finalScore" min="0" required>
+                <label>Highest Possible Score</label>
+                <input type="number" name="finalMax" class="max-score" min="1" required>
+            </div>
+        </div>
+
+        <p id="max-error" style="color:red;"></p>
+
+        <button type="submit">Save</button>
+    </form>
+</div>
+</body>
+</html>

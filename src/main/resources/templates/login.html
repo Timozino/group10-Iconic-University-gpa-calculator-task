@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Login | GPA Calculator</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="icon" type="image/png" href="https://campus.iconicuniversity.edu.ng/images/logo-2.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+    <div class="logo-container" style="text-align: center; margin-top: 20px;">
+        <img src="https://campus.iconicuniversity.edu.ng/images/logo-2.png" alt="Logo" class="rotating-logo" />
+    </div>
+
+  <div class="container login-container" style="position: relative; max-width: 850px; margin: auto;">
+
+    <!-- Cover with front image and text -->
+    <div class="cover" style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 50%;
+        overflow: hidden;
+    ">
+      <div class="front" style="position: relative; height: 100%; width: 100%;">
+        <img th:src="'https://res.cloudinary.com/dnpnrxzgw/image/upload/v1753337416/frontImg_sj9uiw.jpg'" alt="Front Image" style="
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            z-index: 1;
+        "/>
+        <div class="text" style="
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            background: rgba(37, 67, 91, 0.6);
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        ">
+          <span class="text-1" style="font-size: 26px; font-weight: 600;">
+            Don't reveal your <br /> Personal Details.
+          </span>
+          <span class="text-2" style="font-size: 15px; font-weight: 500; margin-top: 10px;">
+            Let's get started
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Login form on the right side -->
+    <div class="forms" style="margin-left: 50%; padding-left: 30px;">
+      <div class="form-content">
+        <div class="login-form">
+          <div class="title">Login</div>
+          <form th:action="@{/login}" method="post">
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="username" placeholder="Enter your email" required />
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" placeholder="Enter your password" required />
+              </div>
+              <div class="text"><a th:href="@{/forgot-password}">Forgot password?</a></div>
+              <div class="button input-box">
+                <input type="submit" value="Login" />
+              </div>
+              <div class="text sign-up-text">Don't have an account? <a th:href="@{/register}">Signup now</a></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

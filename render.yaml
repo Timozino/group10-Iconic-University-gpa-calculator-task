@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: iconic-university-app
+    env: java
+    plan: free
+    buildCommand: "./mvnw clean package -DskipTests"
+    startCommand: "java -jar target/*.jar"
+    envVars:
+      - key: JDBC_DATABASE_URL
+        value: jdbc:postgresql://dpg-d20uvn3ipnbc73do6e0g-a:5432/group10db
+      - key: JDBC_DATABASE_USERNAME
+        value: group10db_user
+      - key: JDBC_DATABASE_PASSWORD
+        value: OqljmLgnrrGqIycURjrcFiDbrMf3SIFf
